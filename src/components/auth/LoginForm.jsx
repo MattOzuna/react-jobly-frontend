@@ -9,6 +9,7 @@ const LoginForm = ({ login }) => {
   const history = useHistory();
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
     setFormData((formData) => ({
@@ -21,12 +22,21 @@ const LoginForm = ({ login }) => {
     e.preventDefault();
     try {
       let res = await JoblyApi.getToken(formData);
+      setIsLoading(true)
       await login(res, formData.username);
       history.push("/");
     } catch (err) {
       setErrors(err.message ? ["Unkown Issue. Try again later."] : err);
     }
   };
+
+  if (isLoading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
   return (
     <Form className="w-50" onSubmit={handleSubmit}>

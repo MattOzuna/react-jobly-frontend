@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 const SignupForm = ({ register }) => {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
   const history = useHistory();
 
   const handleChange = (e) => {
@@ -23,12 +24,21 @@ const SignupForm = ({ register }) => {
     e.preventDefault();
     try {
       let res = await JoblyApi.registerNewUser(formData);
+      setIsLoading(true)
       await register(res, formData.username);
       history.push("/");
     } catch (err) {
       setErrors(err.message ? ['Unkown Issue. Try again later.'] : err);
     }
   };
+
+  if (isLoading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
   return (
     <Form className="" onSubmit={handleSubmit}>
