@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import useLocalStorageState from "./hooks/useLocalStorageState";
 import UserDetails from "./components/users/UserDetails";
 import UserEditForm from "./components/users/UserEditForm";
+import Footer from "./components/users/Footer";
 import { mapJobsIds } from "./helpers";
 
 function App() {
@@ -66,12 +67,13 @@ function App() {
                   <SignupForm register={register} />
                 </Route>
                 <Route>
-                  <p className="text-warning font-weight-bold">
+                  <p className="text-warning font-weight-bold my-5">
                     Hmmm. I can't seem to find what you want.
                   </p>
                 </Route>
               </Switch>
             </main>
+            <Footer />
           </BrowserRouter>
         </UserContext.Provider>
       </div>
