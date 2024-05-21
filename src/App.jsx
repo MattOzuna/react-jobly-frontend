@@ -2,8 +2,9 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContext } from "./components/auth/UserContext";
 import JoblyApi from "./api/api";
-import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import CompanyList from "./components/company/CompanyList";
 import CompanyDetails from "./components/company/CompanyDetails";
 import JobsList from "./components/jobs/JobsList";
@@ -13,7 +14,6 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import useLocalStorageState from "./hooks/useLocalStorageState";
 import UserDetails from "./components/users/UserDetails";
 import UserEditForm from "./components/users/UserEditForm";
-import Footer from "./components/users/Footer";
 import { mapJobsIds } from "./helpers";
 
 function App() {
